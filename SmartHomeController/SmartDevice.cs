@@ -15,13 +15,27 @@ namespace SmartHomeController
         public int DeviceID
         {
             get { return deviceID; }
-            set { deviceID = value; }
+            private set 
+            {
+                if (value <=0)
+                {
+                    throw new ArgumentException("A sevice ID must be a positive number.");
+                }
+                deviceID = value; 
+            }
         }
 
         public string DeviceName
         {
             get { return deviceName; }
-            set { deviceName = value; }
+            private set 
+            { 
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("A device name cannot be empty.");
+                }
+                deviceName = value; 
+            }
         }
 
         public bool Status
